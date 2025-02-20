@@ -22,20 +22,5 @@ The API receives requests in format:
 To start Docker from main directory:
 
 ```sh
-$ docker build . -t dev
-$ docker run -it -p 5000:5000 dev bash
-$ cd e_wallet
-```
-
-### Main app
-
-```sh
-$ python3 api.py
-```
-
-
-### Script for imitating test POST requests
-
-```sh
-$ python3 test_request.py
+$ docker compose up --build
 ```

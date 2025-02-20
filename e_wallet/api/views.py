@@ -29,7 +29,6 @@ class WalletView(generics.RetrieveAPIView):
 class TransactionView(generics.CreateAPIView):
     serializer_class = TransactionSerializer
 
-
     def perform_create(self, serializer):
         wallet_uuid = self.kwargs['wallet_uuid']
         operationType = self.request.data.get('operationType')
