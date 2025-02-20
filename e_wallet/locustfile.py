@@ -7,7 +7,7 @@ class WalletUser(HttpUser):
 
     @task
     def get_wallet_amount(self):
-        self.client.get('http://127.0.0.1:8000/api/v1/wallets/1')
+        self.client.get('http://127.0.0.1:8000/api/v1/wallets/00000000-0000-0000-0000-000000003039')
 
     @task
     def deposit_to_wallet(self):
@@ -15,7 +15,7 @@ class WalletUser(HttpUser):
             "operationType": "DEPOSIT",
             "amount": 1.0
         }
-        self.client.post('http://127.0.0.1:8000/api/v1/wallets/1/operation', json=payload)
+        self.client.post('http://127.0.0.1:8000/api/v1/wallets/00000000-0000-0000-0000-000000003039/operation', json=payload)
 
     @task
     def withdraw_from_wallet(self):
@@ -23,4 +23,4 @@ class WalletUser(HttpUser):
             "operationType": "WITHDRAW",
             "amount": 1.0
         }
-        self.client.post('http://127.0.0.1:8000/api/v1/wallets/1/operation', json=payload)
+        self.client.post('http://127.0.0.1:8000/api/v1/wallets/00000000-0000-0000-0000-000000003039/operation', json=payload)
