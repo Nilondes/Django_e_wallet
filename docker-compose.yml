@@ -1,0 +1,43 @@
+version: "3.9"
+
+networks:
+  backend:
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: nilondes
+      POSTGRES_PASSWORD: tele_test
+      POSTGRES_DB: e_walet
+    command: postgres -c max_connections=1000
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - backend
+  app:
+    build:
+      context: .
+      args:
+        DEPS: dev
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "true"
+      DATABASE_USER: nilondes
+      DATABASE_PASSWORD: tele_test
+      DATABASE_DB: e_walet
+      DATABASE_HOST: postgres
+    networks:
+      - backend
+  locust:
+    build: .
+    command: locust -f locustfile.py --host=http://app:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8089:8089"
+    depends_on:
+      - app
+    networks:
+      - backend

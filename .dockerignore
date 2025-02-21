@@ -1,0 +1,10 @@
+*
+!e_wallet
+!.gitignore
+!docker-compose.yml
+!docker-entrypoint.sh
+!Dockerfile
+!README.md
+!requirements.txt
+!.dockerignore
+!locustfile.py
