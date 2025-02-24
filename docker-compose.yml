@@ -11,6 +11,7 @@ services:
       POSTGRES_PASSWORD: tele_test
       POSTGRES_DB: e_walet
     command: postgres -c max_connections=1000
+
     volumes:
       - /var/lib/postgresql/data
     networks:
@@ -32,11 +33,13 @@ services:
       - backend
   locust:
     build: .
-    command: locust -f locustfile.py --host=http://app:8000
+    command: locust -f locustfile.py
     volumes:
       - .:/code
     ports:
       - "8089:8089"
+    extra_hosts:
+      - "app:host-gateway"
     depends_on:
       - app
     networks:
