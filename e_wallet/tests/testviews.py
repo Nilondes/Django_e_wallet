@@ -37,7 +37,7 @@ class TransactionViewTestCase(TestCase):
                                                                                         'amount': 50}
                                 )
         self.assertEqual(resp.status_code, 404)
-        self.assertEqual(resp.data['detail'], f'There is no wallet with uuid {unknown_uuid}')
+        self.assertEqual(resp.data['detail'], 'No Wallet matches the given query.')
 
     def test_post_valid_transaction(self):
         transaction_resp = self.client.post(f'http://127.0.0.1:8000/api/v1/wallets/{self.uuid}/operation', {'operationType': 'DEPOSIT',
